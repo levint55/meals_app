@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/meals_page.dart';
+import 'package:meals_app/pages/meals_page.dart';
 
 class CategoryItem extends StatelessWidget {
   final String id;
@@ -12,7 +12,7 @@ class CategoryItem extends StatelessWidget {
 
   void selectCategory(BuildContext context) {
     Navigator.of(context)
-        .pushNamed('/meals', arguments: {'id': id, 'title': title});
+        .pushNamed(MealsPage.routeName, arguments: {'id': id, 'title': title});
   }
 
   @override

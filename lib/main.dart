@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/category_page.dart';
-import 'package:meals_app/meals_page.dart';
+import 'package:meals_app/pages/category_page.dart';
+import 'package:meals_app/pages/meals_page.dart';
+import 'package:meals_app/widgets/meal_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,8 +31,12 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: const CategoryPage(),
-      routes: {'/meals': (context) => MealsPage()},
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const CategoryPage(),
+        MealsPage.routeName: (context) => const MealsPage(),
+        MealDetail.routeName: (context) => const MealDetail(),
+      },
     );
   }
 }

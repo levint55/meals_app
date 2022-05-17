@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-class MealsPage extends StatelessWidget {
+class MealDetail extends StatelessWidget {
+  static const routeName = '/meal-detail';
+  const MealDetail({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final Map<String, String> routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-
-    final String? title = routeArgs['title'];
-    final String? id = routeArgs['id'];
+    final String? mealId = routeArgs['id'];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title!),
+        title: Text(mealId!),
       ),
       body: Center(
-        child: Text(
-          id!,
-        ),
+        child: Text(mealId),
       ),
     );
   }
