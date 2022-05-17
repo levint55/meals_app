@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
-import 'package:meals_app/widgets/meal_detail.dart';
+import 'package:meals_app/pages/meal_detail_page.dart';
 
 class MealItem extends StatelessWidget {
   final String id;
@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
   const MealItem(
       {Key? key,
@@ -17,12 +18,17 @@ class MealItem extends StatelessWidget {
       required this.duration,
       required this.complexity,
       required this.affordability,
-      required this.id})
+      required this.id,
+      required this.removeItem})
       : super(key: key);
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context)
-        .pushNamed(MealDetail.routeName, arguments: {'id': id});
+    Navigator.of(context).pushNamed(MealDetailPage.routeName,
+        arguments: {'id': id}).then((value) {
+      if (value != null) {
+        removeItem(value);
+      }
+    });
   }
 
   String get complexityText {

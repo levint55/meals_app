@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
 
-class MealDetail extends StatelessWidget {
+class MealDetailPage extends StatelessWidget {
   static const routeName = '/meal-detail';
-  const MealDetail({Key? key}) : super(key: key);
+  const MealDetailPage({Key? key}) : super(key: key);
 
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
@@ -85,6 +85,11 @@ class MealDetail extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.delete),
+          onPressed: () {
+            Navigator.of(context).pop(mealId);
+          }),
     );
   }
 }
