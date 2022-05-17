@@ -77,7 +77,7 @@ class MealDetail extends StatelessWidget {
                         leading: CircleAvatar(child: Text('# ${index + 1}')),
                         title: Text(selectedMeal.steps[index]),
                       ),
-                      Divider()
+                      const Divider()
                     ],
                   ),
                   itemCount: selectedMeal.steps.length,
