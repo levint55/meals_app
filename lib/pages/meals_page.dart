@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealsPage extends StatefulWidget {
   static const routeName = '/meals';
+  final List<Meal> avaiableMeals;
 
-  const MealsPage({Key? key}) : super(key: key);
+  const MealsPage(this.avaiableMeals, {Key? key}) : super(key: key);
 
   @override
   State<MealsPage> createState() => _MealsPageState();
@@ -24,18 +24,12 @@ class _MealsPageState extends State<MealsPage> {
 
     title = routeArgs['title'];
     id = routeArgs['id'];
-    filteredMeals = DUMMY_MEALS.where(
+    filteredMeals = widget.avaiableMeals.where(
       (element) {
         return element.categories.contains(id);
       },
     ).toList();
     super.didChangeDependencies();
-  }
-
-  void _removeMeal(String mealId) {
-    setState(() {
-      filteredMeals.removeWhere((element) => element.id == mealId);
-    });
   }
 
   @override
@@ -53,7 +47,6 @@ class _MealsPageState extends State<MealsPage> {
             duration: filteredMeals[index].duration,
             complexity: filteredMeals[index].complexity,
             affordability: filteredMeals[index].affordability,
-            removeItem: _removeMeal,
           );
         },
         itemCount: filteredMeals.length,
